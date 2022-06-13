@@ -1,0 +1,9 @@
+.video-content{
+    overflow: hidden;
+    height: 70%;
+    text-align: center;
+}
+
+.video{
+    height: 100%;
+}
