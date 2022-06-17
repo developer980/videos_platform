@@ -5,7 +5,7 @@ import Comments from "./comments-section/comments";
 import Post from "./video/post";
 
 function Videos(props){
-    const{videos} = props;
+    const{videos, comments, user} = props;
     const contents = videos.reverse();
     console.log(videos);
     return(
@@ -15,7 +15,9 @@ function Videos(props){
           description = {video.description}
           name = {video.name}
           key = {video.key}
-          path = {video.key}/>
+          path = {video.key}
+          comments = {comments}
+          user = {user}/>
         })}
       </div>
     )

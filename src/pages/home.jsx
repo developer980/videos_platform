@@ -11,11 +11,13 @@ class Home extends React.Component{
         this.state = {}
     }
     render(){
-        const{images} = this.props;
-        console.log(images);
+        const{videos, comments, user} = this.props;
+        console.log(comments);
         return(
-                <Layout>
-                        <Videos_page images = {images}/>
+                <Layout user = {user}>
+                        <Videos_page videos = {videos} 
+                            comments = {comments}
+                            user = {user}/>
                 </Layout>
         )
     }

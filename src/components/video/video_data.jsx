@@ -6,7 +6,9 @@ import Comment from "../../icons/comment.svg";
 class Video_data extends React.Component{
     constructor(props){
         super(props);
-        this.state = {}
+        this.state = {
+            comments:false,
+        }
     }
 
     render(){
@@ -18,10 +20,6 @@ class Video_data extends React.Component{
             </div>
             <div className = "desc">
                 {description}
-            </div>
-            <div className = "buttons">
-                <img src={Like} className= "btn"/>
-                <img src={Comment} className= "btn"/>
             </div>
             </div>
         )

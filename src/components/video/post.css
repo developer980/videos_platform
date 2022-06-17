@@ -1,0 +1,34 @@
+.buttons{
+    position:relative;
+}
+.like-button{
+    background:none;
+    border:none;
+    width:60px;
+    left:15%;
+    position: absolute;
+}
+.button{
+    background:none;
+    border:none;
+    width:60px;
+    right:15%;
+    position: absolute;
+}
+
+/* .button:hover{
+    width: 100px;
+} */
+
+.buttons > button{
+    transition:all 0.25s;
+}
+
+.buttons > button:hover{
+    width: 100px;
+}
+
+.btn{
+    width:100%;
+    margin-bottom: 20px;
+}

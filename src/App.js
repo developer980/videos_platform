@@ -11,9 +11,11 @@ import { database } from "firebase/database";
 import * as assets from "firebase/storage";
 import { firestore } from "firebase/firestore";
 import "firebase/auth";
-const firebaseapp = firebase.initializeApp(firebaseConfig);
+import Login from "./pages/login";
+
+export const firebaseapp = firebase.initializeApp(firebaseConfig);
 const firebaseAppAuth = firebaseapp.auth();
-const db = firebaseapp.database();
+export const db = firebaseapp.database();
 const st = firebaseapp.storage();
 const fs = firebaseapp.firestore();
 const providers = {
@@ -25,31 +27,61 @@ class App extends React.Component {
     super(props);
     this.state = {
       videos: [],
+      comments:[]
     };
     window.mainComponent = this;
   }
   render() {
-    console.log(this.state.videos);
+    console.log(this.state);
+    
     return (
-      <Switch>
-        <Route
-          exact
-          path="/"
-          render={(props) => <Home {...props} images={this.state.videos} />}
-        />
-        <Route exact path="/page1" component={Page1} />
-      </Switch>
+      <div className = "app">
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={(props) => (<Home 
+              {...props} 
+              user = {this.props.user}
+              videos={this.state.videos}
+              comments = {this.state.comments}
+              />)}
+          />
+          <Route path = "/login" render = {(props)=>(
+            <Login {...props} 
+            user = {this.user}
+            signInWithGoogle = {this.props.signInWithGoogle}
+          />)}></Route>
+          <Route exact path="/page1" component={Page1} />
+        </Switch>
+      </div>
     );
   }
 }
 
-db.ref("/videos").once("value", (snapshot) => {
+db.ref("/videos").on("value", (snapshot) => {
   window.mainComponent.setState({ videos: [] });
+  window.mainComponent.setState({comments:[]});
   snapshot.forEach(function (childSnapshot) {
+
     const name = childSnapshot.val().name;
     const description = childSnapshot.val().description;
     const url = childSnapshot.val().url;
     const key = childSnapshot.key;
+    const comment = childSnapshot.val().comments;
+    console.log(comment);
+
+    db.ref("videos/" + key + "/comments").on("value", (snapshot) => {
+      snapshot.forEach(function(childSnapshot){
+        const newKey = childSnapshot.key;
+        console.log(childSnapshot.val());
+        window.mainComponent.setState((prevstate) => {
+          return{
+            comments:[{...childSnapshot.val(), newKey:newKey}, ...prevstate.comments]
+          };
+        })
+      })
+    })
    window.mainComponent.setState((prevstate) => {
     return{
       videos: [ {
@@ -78,9 +110,12 @@ export function upload(file, name, description) {
   )});
 }
 
-export function add_comment(path, comment){
+export function add_comment(path, comment, username){
+  console.log(path);
   db.ref(path).push({
-    comment:comment
+    comment:comment,
+    path:path,
+    user:username
   })
 }
 

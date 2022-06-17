@@ -10,6 +10,7 @@ function video_item(props){
             <Video address = {address}/>
             <Video_data name = {name}
             description = {description}/>
+            {props.children}
         </div>
     )
 }

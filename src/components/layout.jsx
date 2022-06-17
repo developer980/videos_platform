@@ -3,9 +3,10 @@ import Header from "./header";
 import "./layout.css";
 
 function layout(props){
+    const{user} = props;
         return(
             <div className = "layout">
-             <Header></Header>
+             <Header user = {user}></Header>
              {props.children}   
             </div>
         )

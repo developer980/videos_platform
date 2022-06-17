@@ -2,13 +2,13 @@
     text-align: left;
     font-weight:bold;
     font-size: 30px;
-    color:rgb(0, 0, 0)
+    color:rgb(90, 103, 110);
 }
 .desc{
     text-align: left;
     font-weight:lighter;
     font-size: 20px;
-    color:rgb(0, 0, 0)
+    color:rgb(90, 103, 110);
 }
 .buttons{
     display:flex;

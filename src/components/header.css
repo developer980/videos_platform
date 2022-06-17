@@ -3,21 +3,49 @@
     top:0;
     left:0;
     right:0;
-    background-color: rgb(251, 251, 251);
+    background-color:rgba(39, 51, 61, 0.897);
     height:10%;
     animation:appear 1s;
-    border-bottom: 0.25px solid rgb(207, 207, 207);
+    /* border-bottom: 0.25px solid rgb(207, 207, 207); */
+    backdrop-filter: blur(10px);
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     z-index: 1;
 }
 
 .username{
-    margin: 20px;
-    margin-left: 100px;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
+    display: inline-block;
+    margin-right: 10px;
+    color:white
     /* color: rgb(194, 194, 194); */
+}
+
+.user-section{
+    float:inline-end;
+    margin-right: 50px;
+    display: flex;
+    flex-direction: row;
+}
+
+.login{
+    text-decoration:none;
+    border:none;
+    background:none;
+    color:rgb(255, 255, 255);
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.title{
+    font-size: 30px;
+    margin-left: 100px;
+    font-weight: bold;
+    color:rgb(145, 255, 102)
 }
 
 /* @keyframes appear{

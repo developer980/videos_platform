@@ -10,11 +10,16 @@ class comments extends React.Component{
         this.state={}
     }
     render(){
-        const{comments, path} = this.props;
+        const{comments, path, user} = this.props;
+        console.log("path: " + path)
         return(
-            <div className = "comments-list">
-                <Add_Comment path = {path}/>
-                <Comments_List/>
+            <div className = "comments-section">
+                <div className = "comment-connections">
+                    <Comments_List path = {path} comments = {comments}
+                    user = {user}/>
+                    <Add_Comment path = {path}
+                    user = {user}/>
+                </div>
             </div>
         )
     }

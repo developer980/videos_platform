@@ -10,12 +10,13 @@ class Videos_page extends React.Component{
     }
 
     render(){
-        const{images} = this.props;
-        console.log(images);
+        const{videos, comments, user} = this.props;
         return(
             <div className = "video-contents">
                 <PostVideo/>
-                <Videos videos = {images}/>
+                <Videos videos = {videos} 
+                        comments = {comments}
+                        user = {user}/>
             </div>
         )
     }
