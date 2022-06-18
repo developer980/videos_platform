@@ -2,6 +2,7 @@ import React from "react";
 import "./answer.css";
 import Answers_list from "./answers_list";
 import Add_Answer from "./add_answer";
+import User_icon from "../../icons/user_icon.svg";
 
 export class Answer extends React.Component{
     constructor(props){
@@ -18,10 +19,11 @@ export class Answer extends React.Component{
         return(
             <div className = "connections">
                 <div className = "answer">
-                    <div>
+                    <div className="user-section">
+                        <img className="userIcon" src={User_icon} alt="" />
                         <b>{username}</b>
                     </div>
-                    <div>
+                    <div className="answer-section">
                         {answer}
                     </div>
 

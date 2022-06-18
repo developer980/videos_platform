@@ -10,9 +10,14 @@
     /* padding-top:30px;
     padding-left:30px;
     padding-right:30px; */
-    padding:30px;
+    padding:20px;
     color:rgb(90, 103, 110);
     border: 0.25px solid rgb(199, 199, 199);
+}
+
+.userIcon{
+    width:22px;
+    margin-right: 10px;
 }
 
 .show-hide{
@@ -23,4 +28,8 @@
     margin-bottom: 10px;
     cursor:pointer;
     color:rgb(90, 103, 110);
+}
+
+.comment-content{
+    margin: 10px;
 }

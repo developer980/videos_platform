@@ -4,6 +4,7 @@ import "./comment.css";
 import Answers_list from "./answers_list";
 import Add_Comment from "./add_comment";
 import Add_Answer from "./add_answer";
+import User_icon from "../../icons/user_icon.svg";
 
 class Comment extends React.Component{
     constructor(props){
@@ -21,11 +22,12 @@ class Comment extends React.Component{
             <div className = "comment-body">
                 <div className = "comment">
                     <div className = "comment-username" style = {{fontSize:"30px"}}>
+                        <img className = "userIcon" src={User_icon} alt="" />
                         <b>
                             {username}
                         </b>
                     </div>
-                    <div>
+                    <div className = "comment-content">
                         {comment}
                     </div>
                 </div>

@@ -23,8 +23,8 @@ class PostVideo extends React.Component{
             <div className = "post">
                 <div className="image-post">
                     <div className = "image-content" id = "file">
-                        <video src={this.state.address}>
-                            {/* <source src={this.state.address} type = "video/mp4"/> */}
+                        <video>
+                            <source src={this.state.address} type = "video/mp4"/>
                         </video>
                     </div>
                     <form action="" onSubmit={setContent}>
