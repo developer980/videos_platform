@@ -1,7 +1,14 @@
 import React from "react";
 import Videos from "./videos";
 import "./video_page.css"
-import PostVideo from "./video/postVideo";
+import PostVideo from "./video/postVideo"
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+
+
+//The videos main page that displays two components:
+   // <PostVideo/> which allows the user to upload the video
+   //<Videos/> which displays the posts list
 
 class Videos_page extends React.Component{
     constructor(props){
@@ -10,9 +17,12 @@ class Videos_page extends React.Component{
     }
 
     render(){
-        const{videos, comments, user} = this.props;
+        const{videos, comments, user, keyword} = this.props;
+        console.log(keyword);
         return(
             <div className = "video-contents">
+                
+
                 <PostVideo user = {user}/>
                 <Videos videos = {videos} 
                         comments = {comments}
@@ -22,4 +32,10 @@ class Videos_page extends React.Component{
     }
 }
 
-export default Videos_page;
+function mapStateToProps(state){
+    return {
+      keyword: state.keyword
+  };
+  }
+
+export default connect(mapStateToProps, null)(Videos_page);

@@ -6,6 +6,10 @@ import Comment from "../../icons/comment.svg";
 import "./post.css";
 import { Link } from "react-router-dom";
 
+
+/*the <Video_Item/> component displays the video's content 
+ along with the Title, the description, the like and comment button and the user who posted it*/
+
 class Post extends React.Component{
     constructor(props){
         super(props);
@@ -18,7 +22,7 @@ class Post extends React.Component{
         const{address, name, description, path, comments, user, username, userId} = this.props;
             console.log(this.state);
         return(
-            <div>
+            <div className = "post-item">
                 <Video_item address = {address}
                 username = {username}
                 name = {name}

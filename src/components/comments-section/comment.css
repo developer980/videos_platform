@@ -3,7 +3,8 @@
 }
 
 .comment{
-    width:80%;
+    width:fit-content;
+    max-width:100%;
     margin-top:40px;
     background-color: white;
     border-radius:10px;

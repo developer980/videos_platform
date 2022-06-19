@@ -14,10 +14,10 @@ function video_item(props){
                 <b>{username}</b>
             </div>
             <Video address = {address}/>
-            <Link to = {`/${path}=>${name}`} state = {{name: name, desc:description}}>
+            <div>
                 <Video_data name = {name}
                     description = {description}/>
-            </Link>
+            </div>
             {props.children}
         </div>
     )

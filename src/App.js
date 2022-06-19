@@ -3,7 +3,6 @@ import logo from "./logo.svg";
 import "./App.css";
 import Home from "./pages/home";
 import { Switch, Route } from "react-router-dom";
-import Page1 from "./pages/page1";
 import withFirebaseAuth from "react-with-firebase-auth";
 import * as firebase from "firebase/app";
 import firebaseConfig from "./configs/firebaseConfig";
@@ -74,6 +73,9 @@ class App extends React.Component {
   }
 }
 
+
+//Reads the videos from firebase once the page is (re)loaded
+
 db.ref("/videos").once("value", (snapshot) => {
   window.mainComponent.setState({ videos: [] });
   snapshot.forEach(function (childSnapshot) {
@@ -85,11 +87,13 @@ db.ref("/videos").once("value", (snapshot) => {
     const comments = childSnapshot.val().comments;
     const username = childSnapshot.val().username;
     const userId = childSnapshot.val().uid;
-    //console.log(comment);
+
+
+    //Sets up a listener in order to read the comments of each video
 
     db.ref("videos/" + key + "/comments").on("value", (snapshot) => {
-      
-  window.mainComponent.setState({comments:[]});
+
+      window.mainComponent.setState({comments:[]});
       snapshot.forEach(function(childSnapshot){
         const newKey = childSnapshot.key;
         console.log(childSnapshot.val());
@@ -116,6 +120,12 @@ db.ref("/videos").once("value", (snapshot) => {
   });
 });
 
+
+//This function its called to upload the videos
+//It uses the storage from firebase to store the video file
+//It uses the realtime database to store an object containing the file's address from storage,
+//the comments section and info about the user who uploaded it
+
 export function upload(file, name, description, user) {
   st.ref(`files/${file.name}`).put(file).on("state_changed", snapshot =>{},
    error=>{console.log("error")}, 
@@ -130,10 +140,17 @@ export function upload(file, name, description, user) {
     description:description,
     username:user.displayName,
     uid:user.uid
-   })
+   }).then(()=>{window.location.reload()});
   }
   )});
 }
+
+
+//This function is called to upload comments to the video posts
+//and also for adding replies to the comments
+//It has 3 parameters: path, comment and username
+//The path parameter specifies where the comment or comment answer should be uploaded in the realtime database
+//The username parameter specifies the username of the person who uploaded the comment/answer
 
 export function add_comment(path, comment, username){
   console.log(path);

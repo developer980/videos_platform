@@ -3,6 +3,7 @@
     height: 500px;
     margin:auto;
     background-color: white;
+    border: 0.25px solid rgb(199, 199, 199);
     margin-top: 150px;
     align-items: center;
     display:flex;
@@ -50,7 +51,7 @@ form{
     text-align: center;
 }
 
-form > button{
+.form-button{
     background-color: rgb(90, 103, 110);
     width:fit-content;
     padding:50px;
@@ -66,7 +67,7 @@ form > button{
     font-weight: bold;
 }
 
-form > button:hover{
+.form-button:hover{
     background-color: rgb(209, 213, 216);
     color:rgb(90, 103, 110);
 }

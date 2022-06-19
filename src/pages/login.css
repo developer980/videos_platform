@@ -1,4 +1,20 @@
-.login{
-    margin:auto;
-    vertical-align: middle;
+.login-btn{
+    width: 250px;
+    height:100px;
+    display: flex;
+    margin: auto;
+    margin-top: 20%;
+    align-items: center;
+    border: none;
+    border-radius: 20px;
+    justify-content: space-around;
+    font-size: 20px;
+    font-weight: bold;
+    color:rgb(44, 70, 87);
+    background-color: white;
+    transition: all 0.25s;
+}
+
+.login-btn:hover{
+    background-color: rgb(233, 233, 233);
 }

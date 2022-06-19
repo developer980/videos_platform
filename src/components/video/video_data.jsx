@@ -8,6 +8,10 @@ class Video_data extends React.Component{
         super(props);
         this.state = {
             comments:false,
+            title:"hidden",
+            title_height:"40px",
+            description:"hidden",
+            description_height:"30px"
         }
     }
 
@@ -15,12 +19,37 @@ class Video_data extends React.Component{
         const{name, description} = this.props;
         return(
             <div>
-                <div className = "vid-data">
+                <div id = "title" className = "vid-data" style = {{overflow:this.state.title, height:this.state.title_height}}>
                     {name}
                 </div>
-                <div className = "desc">
+                {
+                    this.state.title == "hidden" ?
+                        <button className = "show-hide" onClick={()=>{
+                            this.setState({title:"visible"});
+                            this.setState({title_height:"fit-content"})
+                        }}>Show more</button>
+                        :
+                        <button className = "show-hide" onClick={()=>{
+                            this.setState({title:"hidden"});
+                            this.setState({title_height:"40px"})
+                        }}>Show less</button>
+                }
+                <div id = "description" className = "desc" style={{overflow:this.state.description, height:this.state.description_height}}>
                     {description}
                 </div>
+                {
+                    this.state.description == "hidden" ?
+                        <button className = "show-hide" onClick={()=>{
+                            this.setState({description:"visible"});
+                            this.setState({description_height:"fit-content"})
+                        }}>Show more</button>
+                        :
+                        <button className = "show-hide" onClick={()=>{
+                            this.setState({description:"hidden"});
+                            this.setState({description_height:"30px"})
+                        }}>Show less</button>
+
+                }
             </div>
         )
     }

@@ -3,14 +3,13 @@ import Video_item from "./video/video_item";
 import "./videos.css";
 import Comments from "./comments-section/comments";
 import Post from "./video/post";
-import { connect } from "react-redux";
 
 function Videos(props){
-    const{videos, comments, user, keyword} = props;
+    const{videos, comments, user} = props;
     console.log(videos);
     return(
       <div className = "videos-list">
-        {videos.filter(video => video.name.includes(props.keyword) || video.description.includes(props.keyword)).map(video => {
+        {videos.map(video => {
           console.log(video.comments);
           return <Post address = {video.url}
             description = {video.description}
@@ -27,10 +26,4 @@ function Videos(props){
 
 }
 
-function mapStateToProps(state){
-  return {
-    keyword: state.keyword
-};
-}
-
-export default connect(mapStateToProps, null) (Videos);
+export default Videos;

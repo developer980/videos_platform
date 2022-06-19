@@ -5,6 +5,8 @@ import UserIcon from "../icons/user_icon.svg";
 import "./profile.css"
 
 
+//The profile page displays the videos posted by you
+
 export function Profile(props){
     const{videos, comments, user, match} = props;
     return(

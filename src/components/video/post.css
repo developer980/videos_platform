@@ -1,5 +1,6 @@
 .buttons{
     position:relative;
+    margin-top: 100px;
 }
 .like-button{
     background:none;
@@ -7,6 +8,7 @@
     width:60px;
     left:15%;
     position: absolute;
+    bottom:0px;
     
 }
 .comments-button{
@@ -15,6 +17,7 @@
     width:60px;
     right:15%;
     position: absolute;
+    bottom:0px;
 }
 
 /* .button:hover{
@@ -27,7 +30,7 @@
 }
 
 .buttons > button:hover{
-    width: 100px;
+    width: 80px;
 }
 
 .btn{
@@ -40,5 +43,6 @@ a{
 }
 
 .post-item{
-    height:700px;
+    width:100%;
+    margin-top: 80px;
 }

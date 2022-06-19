@@ -2,13 +2,18 @@
     text-align: left;
     font-weight:bold;
     font-size: 30px;
-    color:rgb(90, 103, 110);
+    color:rgb(90, 103, 110);  
+    height:30px;
+    overflow: hidden;
 }
 .desc{
     text-align: left;
     font-weight:lighter;
     font-size: 20px;
     color:rgb(90, 103, 110);
+    height:30px;
+    overflow: hidden;
+    margin-top: 10px;
 }
 .buttons{
     display:flex;

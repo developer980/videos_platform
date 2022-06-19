@@ -1,5 +1,6 @@
 .answer{
-    width:80%;
+    width:fit-content;
+    max-width:80%;
     height:fit-content;
     background-color: white;
     border-radius: 10px;

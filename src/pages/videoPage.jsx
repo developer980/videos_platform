@@ -4,6 +4,10 @@ import Video_item from "../components/video/video_item";
 import Post from "../components/video/post";
 import Layout from "../components/layout";
 import { useLocation, useParams } from "react-router-dom";
+import "./videoPage.css";
+
+
+//a page that shows posts related to your search
 
 export function VideoPage(props){
 
@@ -14,8 +18,8 @@ export function VideoPage(props){
     const id = match.params.videoid;
     const name = match.params.videoName;
     return(
-        <Layout user = {user}>
-            <div>
+        <Layout user = {user} videos = {videos}>
+            <div className = "related-videos">
                 {
                     videos.filter(video => video.key == id).map(video =>{
                         return(
