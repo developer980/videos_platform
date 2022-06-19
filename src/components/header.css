@@ -3,7 +3,7 @@
     top:0;
     left:0;
     right:0;
-    background-color:rgb(39, 51, 61);
+    background-color:rgb(90, 103, 110);
     height:10%;
     animation:appear 1s;
     /* border-bottom: 0.25px solid rgb(207, 207, 207); */
@@ -21,7 +21,8 @@
     font-weight: bold;
     display: inline-block;
     margin-right: 10px;
-    color:white
+    color:white;
+    margin-left:10px
     /* color: rgb(194, 194, 194); */
 }
 
@@ -58,21 +59,36 @@
     background-color: rgb(234, 239, 241);
     margin: 10px;
     font-size: 15px;
+    animation: increase 1s;
 }
 
 .search-input:focus{
     outline-width:0;
 }
 
-/* @keyframes appear{
-    from{
+@keyframes appear{
+    0%{
         height:0%;
         border-bottom-left-radius: 0px;
         border-bottom-right-radius: 0px;
     }
-    to{
+    70%{
         height:10%;        
+        border-bottom-left-radius: 25px;
+        border-bottom-right-radius: 25px;
+    }
+
+    100%{
         border-bottom-left-radius: 50px;
         border-bottom-right-radius: 50px;
     }
-} */
+}
+
+@keyframes increase{
+    from{
+        width:0%;
+    }
+    to{
+        width:40%;
+    }
+}

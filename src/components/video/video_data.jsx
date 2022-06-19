@@ -15,12 +15,12 @@ class Video_data extends React.Component{
         const{name, description} = this.props;
         return(
             <div>
-            <div className = "vid-data">
-                {name}
-            </div>
-            <div className = "desc">
-                {description}
-            </div>
+                <div className = "vid-data">
+                    {name}
+                </div>
+                <div className = "desc">
+                    {description}
+                </div>
             </div>
         )
     }

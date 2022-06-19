@@ -1,7 +1,6 @@
 .video-item{
-    width:50%;
-    height:600px;
-    text-align: center;
+    width:55%;
+    height:700px;
     background-color: rgb(255, 255, 255);
     margin:auto;
     margin-top: 100px;
@@ -10,4 +9,22 @@
     display: flex;
     flex-direction: column;
     padding: 20px;
+    display:flex;
+    flex-direction: column;
+}
+
+.user-icon{
+    width:50px;
+    filter: invert(10%) sepia(50%) saturate(70%) hue-rotate(170deg) brightness(450%) contrast(119%);
+}
+
+.user-info{
+    display:flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color:rgb(90, 103, 110);
+}
+
+.user-info > img{
+    margin-right: 10px;
 }

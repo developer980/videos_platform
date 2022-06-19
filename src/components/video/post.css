@@ -7,8 +7,9 @@
     width:60px;
     left:15%;
     position: absolute;
+    
 }
-.button{
+.comments-button{
     background:none;
     border:none;
     width:60px;
@@ -22,6 +23,7 @@
 
 .buttons > button{
     transition:all 0.25s;
+    filter: invert(10%) sepia(20%) saturate(70%) hue-rotate(170deg) brightness(550%) contrast(119%);
 }
 
 .buttons > button:hover{
@@ -31,4 +33,12 @@
 .btn{
     width:100%;
     margin-bottom: 20px;
+}
+
+a{
+    text-decoration: none;
+}
+
+.post-item{
+    height:700px;
 }

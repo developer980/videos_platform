@@ -13,7 +13,7 @@ class Videos_page extends React.Component{
         const{videos, comments, user} = this.props;
         return(
             <div className = "video-contents">
-                <PostVideo/>
+                <PostVideo user = {user}/>
                 <Videos videos = {videos} 
                         comments = {comments}
                         user = {user}/>

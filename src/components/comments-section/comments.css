@@ -1,10 +1,9 @@
 .comments-section{
-    width:80%;
+    width:60%;
     height:fit-content;
     display:flex;
     flex-direction:column-reverse;
-    margin-left:30%;
-    /* border: 1px solid rgb(148, 148, 148); */
+    margin-left:29%;
 }
 
 
@@ -13,7 +12,5 @@
 .comment-connections{
     border-left: 1px solid rgb(182, 182, 182);
     padding-left: 10px;
-    /* border-bottom: 1px solid rgb(155, 155, 155); */
-    /* border-bottom-left-radius: 30px; */
 
 }

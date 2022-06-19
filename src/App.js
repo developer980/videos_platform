@@ -12,6 +12,8 @@ import * as assets from "firebase/storage";
 import { firestore } from "firebase/firestore";
 import "firebase/auth";
 import Login from "./pages/login";
+import { VideoPage } from "./pages/videoPage";
+import { Profile } from "./pages/profile";
 
 export const firebaseapp = firebase.initializeApp(firebaseConfig);
 const firebaseAppAuth = firebaseapp.auth();
@@ -47,31 +49,47 @@ class App extends React.Component {
               comments = {this.state.comments}
               />)}
           />
+
           <Route path = "/login" render = {(props)=>(
             <Login {...props} 
             user = {this.user}
             signInWithGoogle = {this.props.signInWithGoogle}
           />)}></Route>
-          <Route exact path="/page1" component={Page1} />
+
+          <Route path = "/:videoid=>:videoName" render = {(props) => (
+            <VideoPage {...props} 
+            user = {this.props.user}
+            videos = {this.state.videos}
+            comments = {this.state.comments}/>
+          )}/>
+          <Route path = "/profile" render={(props) =>(
+            <Profile {...props} 
+            user = {this.props.user}
+            videos = {this.state.videos}
+            comments = {this.state.comments}/>
+          )}/>
         </Switch>
       </div>
     );
   }
 }
 
-db.ref("/videos").on("value", (snapshot) => {
+db.ref("/videos").once("value", (snapshot) => {
   window.mainComponent.setState({ videos: [] });
-  window.mainComponent.setState({comments:[]});
   snapshot.forEach(function (childSnapshot) {
 
     const name = childSnapshot.val().name;
     const description = childSnapshot.val().description;
     const url = childSnapshot.val().url;
     const key = childSnapshot.key;
-    const comment = childSnapshot.val().comments;
-    console.log(comment);
+    const comments = childSnapshot.val().comments;
+    const username = childSnapshot.val().username;
+    const userId = childSnapshot.val().uid;
+    //console.log(comment);
 
     db.ref("videos/" + key + "/comments").on("value", (snapshot) => {
+      
+  window.mainComponent.setState({comments:[]});
       snapshot.forEach(function(childSnapshot){
         const newKey = childSnapshot.key;
         console.log(childSnapshot.val());
@@ -89,22 +107,29 @@ db.ref("/videos").on("value", (snapshot) => {
         description,
         url,
         key,
+        comments,
+        username,
+        userId
       },...prevstate.videos]
     };
    })
   });
 });
 
-export function upload(file, name, description) {
+export function upload(file, name, description, user) {
   st.ref(`files/${file.name}`).put(file).on("state_changed", snapshot =>{},
    error=>{console.log("error")}, 
    () =>{st.ref(`files/${file.name}`)
    .getDownloadURL()
-   .then((url) => {db.ref("videos/")
+   .then((url) => {   
+    // const username = window.mainComponent.props.user.displayname;
+    db.ref("videos/")
    .push({
     name:name,
     url:url,
     description:description,
+    username:user.displayName,
+    uid:user.uid
    })
   }
   )});

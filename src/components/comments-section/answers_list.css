@@ -1,7 +1,6 @@
 .answers-list{
     display:flex;
-    flex-direction: column-reverse;
-    float: right;
-    width:90%;
+    flex-direction: column;
+    width:80%;
     
 }

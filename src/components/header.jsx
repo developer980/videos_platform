@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { store } from "../redux/store";
 import { connect } from "react-redux";
 import { find } from "../redux/action";
+import UserIcon from "../icons/user_icon.svg";
 
 function Header(props){
     const{user} = props;
@@ -18,8 +19,9 @@ function Header(props){
             <div className = "user-section">
                 {
                 user?
-                    <div>
-                        <div className="username">{user.displayName}</div>
+                    <div className = "user-section">
+                        <img className = "user-icon" src= {UserIcon} alt="" />
+                        <Link to = {`/profile`} className="username">{user.displayName}</Link>
                         <Link to = "/login" className = "login">
                             Log out
                         </Link>

@@ -19,7 +19,7 @@ class Comment extends React.Component{
         console.log(this.state);
 
         return(
-            <div className = "comment-body">
+            <div>
                 <div className = "comment">
                     <div className = "comment-username" style = {{fontSize:"30px"}}>
                         <img className = "userIcon" src={User_icon} alt="" />
@@ -34,7 +34,7 @@ class Comment extends React.Component{
                 
                 {
                     this.state.answers? 
-                    <div>
+                    <div className = "connections">
                         <button className="show-hide" onClick = {() => {
                             this.state.answers?
                             this.setState({answers:false}):

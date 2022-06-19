@@ -17,7 +17,7 @@ export class Answer extends React.Component{
         //console.log(`${currentPath}/${path}/answers/${newPath}/answers`);
         //console.log(answers);
         return(
-            <div className = "connections">
+            <div>
                 <div className = "answer">
                     <div className="user-section">
                         <img className="userIcon" src={User_icon} alt="" />
@@ -33,7 +33,7 @@ export class Answer extends React.Component{
                     } */}
                 {
                     this.state.answers?
-                    <div>
+                    <div className = "connections">
                         <button className="show-hide" onClick = {() => {
                             this.state.answers?
                             this.setState({answers:false}):
