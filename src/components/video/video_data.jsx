@@ -11,7 +11,7 @@ class Video_data extends React.Component{
             title:"hidden",
             title_height:"40px",
             description:"hidden",
-            description_height:"30px"
+            description_height:"27px"
         }
     }
 
@@ -22,6 +22,7 @@ class Video_data extends React.Component{
                 <div id = "title" className = "vid-data" style = {{overflow:this.state.title, height:this.state.title_height}}>
                     {name}
                 </div>
+
                 {
                     this.state.title == "hidden" ?
                         <button className = "show-hide" onClick={()=>{
@@ -34,9 +35,11 @@ class Video_data extends React.Component{
                             this.setState({title_height:"40px"})
                         }}>Show less</button>
                 }
+
                 <div id = "description" className = "desc" style={{overflow:this.state.description, height:this.state.description_height}}>
                     {description}
                 </div>
+
                 {
                     this.state.description == "hidden" ?
                         <button className = "show-hide" onClick={()=>{
@@ -48,8 +51,8 @@ class Video_data extends React.Component{
                             this.setState({description:"hidden"});
                             this.setState({description_height:"30px"})
                         }}>Show less</button>
-
                 }
+                
             </div>
         )
     }

@@ -25,20 +25,17 @@ export default class Comments_list extends React.Component{
         const nextPath = "videos/" + path + "/comments";
         return(
             <div className= "comments-list">
-                {comments ? 
-                comments.map(comment => {
+                {comments ? comments.filter(comment => comment.path == nextPath).map(comment => {
                     // console.log(path + ' ' + comment.comment);
-                   if(comment.path == nextPath){
                         console.log(comment.user)
                         return(
                             <Comment currentPath = {nextPath} 
-                            comment = {comment.comment}
-                            code = {comment.newKey}
-                            username = {comment.user}
-                            user = {user}
-                            answers = {comment.answers}/>
+                                comment = {comment.comment}
+                                code = {comment.newKey}
+                                username = {comment.user}
+                                user = {user}
+                                answers = {comment.answers}/>
                         )
-                   }
                 }): null}
             </div>
         )

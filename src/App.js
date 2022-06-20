@@ -17,8 +17,8 @@ import { Profile } from "./pages/profile";
 export const firebaseapp = firebase.initializeApp(firebaseConfig);
 const firebaseAppAuth = firebaseapp.auth();
 export const db = firebaseapp.database();
-const st = firebaseapp.storage();
-const fs = firebaseapp.firestore();
+export const st = firebaseapp.storage();
+export const fs = firebaseapp.firestore();
 const providers = {
   googleProvider: new firebase.auth.GoogleAuthProvider(),
 };
@@ -28,10 +28,81 @@ class App extends React.Component {
     super(props);
     this.state = {
       videos: [],
-      comments:[]
+      comments:[],
+      likes:[]
     };
     window.mainComponent = this;
   }
+
+
+  
+
+  componentDidMount(){
+    
+    //Reads the videos from firebase once the page is (re)loaded
+    db.ref("/videos").once("value", (snapshot) => {
+      window.mainComponent.setState({ videos: [] });
+      snapshot.forEach(function (childSnapshot) {
+    
+        const name = childSnapshot.val().name;
+        const description = childSnapshot.val().description;
+        const url = childSnapshot.val().url;
+        const key = childSnapshot.key;
+        const comments = childSnapshot.val().comments;
+        const username = childSnapshot.val().username;
+        const userId = childSnapshot.val().uid;
+    
+       window.mainComponent.setState((prevstate) => {
+        return{
+          videos: [ {
+            name,
+            description,
+            url,
+            key,
+            comments,
+            username,
+            userId,
+          },...prevstate.videos]
+        };
+       })
+      });
+    })
+
+
+    //Sets up a listener in order to get in the realtime, data about the comments and number iof likes for each video
+
+    db.ref("/videos").on("value", (snapshot) => {
+      this.setState({comments:[]});
+      this.setState({likes:[]})
+      snapshot.forEach(childSnapshot =>{
+        console.log(childSnapshot.val().comments)
+        const comments = childSnapshot.val().comments;
+        const likes = childSnapshot.val().likes;
+
+        if(comments){
+          Object.entries(comments).map(([key, value]) => {
+            this.setState(prevState => {
+              return{
+                comments:[{...value, newKey:key}, ...prevState.comments],
+              }
+            })
+          })
+        }
+
+        if(likes){
+          Object.entries(likes).map(([key, value]) => {
+            this.setState(prevState => { 
+              return{
+                likes:[{...value, key:key}, ...prevState.likes]
+              }
+            })
+          })
+        }
+        console.log(childSnapshot.val().likes)
+      })
+    })
+  }
+
   render() {
     console.log(this.state);
     
@@ -46,6 +117,7 @@ class App extends React.Component {
               user = {this.props.user}
               videos={this.state.videos}
               comments = {this.state.comments}
+              likes = {this.state.likes}
               />)}
           />
 
@@ -59,13 +131,16 @@ class App extends React.Component {
             <VideoPage {...props} 
             user = {this.props.user}
             videos = {this.state.videos}
-            comments = {this.state.comments}/>
+            comments = {this.state.comments}
+            likes = {this.state.likes}/>
           )}/>
-          <Route path = "/profile" render={(props) =>(
+
+          <Route path = "/profile->:username" render={(props) =>(
             <Profile {...props} 
             user = {this.props.user}
-            videos = {this.state.videos}
-            comments = {this.state.comments}/>
+            videos={this.state.videos}
+            comments = {this.state.comments}
+            likes = {this.state.likes}/>
           )}/>
         </Switch>
       </div>
@@ -74,57 +149,34 @@ class App extends React.Component {
 }
 
 
-//Reads the videos from firebase once the page is (re)loaded
 
-db.ref("/videos").once("value", (snapshot) => {
-  window.mainComponent.setState({ videos: [] });
-  snapshot.forEach(function (childSnapshot) {
+//This function is called in order to upload a comment to the realtime database
 
-    const name = childSnapshot.val().name;
-    const description = childSnapshot.val().description;
-    const url = childSnapshot.val().url;
-    const key = childSnapshot.key;
-    const comments = childSnapshot.val().comments;
-    const username = childSnapshot.val().username;
-    const userId = childSnapshot.val().uid;
-
-
-    //Sets up a listener in order to read the comments of each video
-
-    db.ref("videos/" + key + "/comments").on("value", (snapshot) => {
-
-      window.mainComponent.setState({comments:[]});
-      snapshot.forEach(function(childSnapshot){
-        const newKey = childSnapshot.key;
-        console.log(childSnapshot.val());
-        window.mainComponent.setState((prevstate) => {
-          return{
-            comments:[{...childSnapshot.val(), newKey:newKey}, ...prevstate.comments]
-          };
-        })
-      })
-    })
-   window.mainComponent.setState((prevstate) => {
-    return{
-      videos: [ {
-        name,
-        description,
-        url,
-        key,
-        comments,
-        username,
-        userId
-      },...prevstate.videos]
-    };
-   })
-  });
-});
+export function add_comment(path, comment, username){
+  console.log(path);
+  db.ref(path).push({
+    comment:comment,
+    path:path,
+    user:username,
+    uid:window.mainComponent.props.user.uid
+  })
+}
 
 
-//This function its called to upload the videos
-//It uses the storage from firebase to store the video file
-//It uses the realtime database to store an object containing the file's address from storage,
-//the comments section and info about the user who uploaded it
+//This function is called in order to upload like for a specified video
+
+export function add_like(path){
+  db.ref(`videos/${path}/likes`).push({
+    like:"like",
+    from:window.mainComponent.props.user.uid,
+    path:path
+  })
+}
+
+/*
+This function is used to upload a video on the firebase storage
+*/
+
 
 export function upload(file, name, description, user) {
   st.ref(`files/${file.name}`).put(file).on("state_changed", snapshot =>{},
@@ -132,33 +184,25 @@ export function upload(file, name, description, user) {
    () =>{st.ref(`files/${file.name}`)
    .getDownloadURL()
    .then((url) => {   
-    // const username = window.mainComponent.props.user.displayname;
+
+    /* 
+    This section creates a slot in the realtime database when the video is uploaded to storage
+    Which reprezents an object containing the URL to the video's location on the storage and also 
+    the comments and likes section
+     */
     db.ref("videos/")
-   .push({
-    name:name,
-    url:url,
-    description:description,
-    username:user.displayName,
-    uid:user.uid
-   }).then(()=>{window.location.reload()});
+    .push({
+        name:name,
+        url:url,
+        description:description,
+        username:user.displayName,
+        likes:[],
+        uid:user.uid
+    }).then(()=> {
+      window.location.reload()
+    });
   }
-  )});
-}
-
-
-//This function is called to upload comments to the video posts
-//and also for adding replies to the comments
-//It has 3 parameters: path, comment and username
-//The path parameter specifies where the comment or comment answer should be uploaded in the realtime database
-//The username parameter specifies the username of the person who uploaded the comment/answer
-
-export function add_comment(path, comment, username){
-  console.log(path);
-  db.ref(path).push({
-    comment:comment,
-    path:path,
-    user:username
-  })
+  )})
 }
 
 export default withFirebaseAuth({

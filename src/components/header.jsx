@@ -1,9 +1,12 @@
 import React from "react";
 import "./header.css";
 import { Link } from "react-router-dom";
-import { store } from "../redux/store";
-import { connect } from "react-redux";
 import UserIcon from "../icons/user_icon.svg";
+
+
+/*
+The header containing the logo, the searchbar and the user section
+*/
 
 class Header extends React.Component{
     constructor(props){
@@ -21,18 +24,21 @@ class Header extends React.Component{
         const{user, videos} = this.props;
         return(
             <div className = "header">
-                <div className="title">
+                
+                <Link to = "/" className="title">
                     VIDEOS
-                </div>
+                </Link>
+
                 <input className="search-input" id = "search" type="search" placeholder="Search" onChange = {(e)=>{
                     this.find(e.target.value);
                 }}/>
+
                 <div className = "user-section">
                     {
                     user?
                         <div className = "user-section">
                             <img className = "user-icon" src= {UserIcon} alt="" />
-                            <Link to = {`/profile`} className="username">{user.displayName}</Link>
+                            <Link to = {`/profile->${user.displayName}`} className="username">{user.displayName}</Link>
                             <Link to = "/login" className = "login">
                                 Log out
                             </Link>
@@ -42,10 +48,12 @@ class Header extends React.Component{
                         </Link>
                     }
                 </div>
+
                 {
                     this.state.keyword?
                     <div className = "results-list">
                         {
+                            videos?
                                 videos.filter(video => video.name.includes(this.state.keyword) || video.description.includes(this.state.keyword))
                                 .map(video => {
                                     return(
@@ -60,6 +68,8 @@ class Header extends React.Component{
                                     </Link>
                                     )
                                 })
+                                :
+                                <b>You have no videos yet</b>
                             }
                         </div>:
                     null

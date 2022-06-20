@@ -5,6 +5,7 @@
     color:rgb(90, 103, 110);  
     height:30px;
     overflow: hidden;
+    word-wrap: break-word;
 }
 .desc{
     text-align: left;
@@ -14,6 +15,7 @@
     height:30px;
     overflow: hidden;
     margin-top: 10px;
+    word-wrap: break-word;
 }
 .buttons{
     display:flex;

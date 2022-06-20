@@ -11,6 +11,7 @@
     padding-left:30px;
     padding-right:30px; */
     padding:20px;
+    word-wrap: break-word;
 }
 
 .user-section{

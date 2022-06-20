@@ -1,8 +1,8 @@
 import React from "react";
 import "./postVideo.css";
-import { upload } from "../../App";
 import VideoIcon from "../../icons/cloud.svg";
 import LoadingIcon from "../../icons/loading.svg";
+import { upload } from "../../App";
 
 class PostVideo extends React.Component{
     constructor(props){
@@ -15,7 +15,7 @@ class PostVideo extends React.Component{
             placeholder_d:"block",
             loading_d:"none"
         }
-        window.image = this;
+        window.uploadSection = this;
     }
 
     render(){
@@ -61,26 +61,28 @@ class PostVideo extends React.Component{
 
                        <div>
                        {user? 
-                       <div>
-                       <button className = "form-button" onClick = {(e)=>{
-                            e.preventDefault();
-                            const original_btn = document.getElementById("video-input");
-                            original_btn.click()
-                        }}>Choose a file</button>
+                        <div>
+                            <button className = "form-button" onClick = {(e)=>{
+                                    e.preventDefault();
+                                    const original_btn = document.getElementById("video-input");
+                                    original_btn.click()
+                                }}>Choose a file
+                                </button>
                         
-                        {
-                            this.state.address && this.state.name && this.state.description ?
-                            <button className = "form-button" onClick = {() =>{
-                                this.setState({address:''})
-                            }} type="submit">Upload</button> :
-                            <button className = "form-button" onClick = {(e) =>{
-                                e.preventDefault()
-                            }} style = {{backgroundColor:'#E0E0E0', color:'#A6A6A6'}}>Upload</button>
-                        
-
-                        }
+                            {
+                                this.state.address && this.state.name && this.state.description ?
+                                <button className = "form-button" onClick = {() =>{
+                                    this.setState({address:''})
+                                }} type="submit">Upload
+                                </button>
+                                :
+                                <button className = "form-button" onClick = {(e) =>{
+                                    e.preventDefault()
+                                }} style = {{backgroundColor:'#E0E0E0', color:'#A6A6A6'}}>Upload</button>
+                            }
                         </div>
-                        :<div>
+                        :
+                        <div>
                             <button className = "form-button" onClick = {(e) =>{
                                 e.preventDefault()
                             }} style = {{backgroundColor:'#E0E0E0', color:'#A6A6A6'}}>Choose a file</button>
@@ -108,6 +110,6 @@ class PostVideo extends React.Component{
             </div>
         )
     }
-}
+} 
 
 export default PostVideo;

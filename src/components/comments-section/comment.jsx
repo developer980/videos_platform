@@ -6,6 +6,15 @@ import Add_Comment from "./add_comment";
 import Add_Answer from "./add_answer";
 import User_icon from "../../icons/user_icon.svg";
 
+
+/* 
+The comments-section is organised in comments and answers, 
+users being able to upload comments or answers to other users comments or answers.
+
+Each <Comment/> Component will have an <Answers_list/> and an <Add_answer component 
+responsible for uploading answers to the specified comment
+*/
+
 class Comment extends React.Component{
     constructor(props){
         super(props);

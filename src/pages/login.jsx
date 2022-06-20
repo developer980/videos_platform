@@ -1,6 +1,7 @@
 import React from "react";
 import "./login.css";
 import GoogleIcon from "../icons/google.svg";
+import { db } from "../App";
 
 
 //the login page
@@ -9,11 +10,13 @@ function Login(props){
     const{signInWithGoogle, history} = props;
     function handleGoogleLogin(){
         const s = signInWithGoogle();
-        s.then(()=>{history.push("/")});
+        s.then(()=>{
+            history.push("/");
+        });
         s.catch(()=>window.location.reload())
     }
     return(
-        <div>
+        <div className = 'login-page'>
             <button onClick = {handleGoogleLogin} className="login-btn">
                 Login with Google
                 <img src={GoogleIcon} alt="" />

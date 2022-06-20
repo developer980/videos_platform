@@ -4,6 +4,13 @@ import Comment from "./comment";
 import Comments_List from "./comments_list";
 import Add_Comment from "./add_comment";
 
+
+/* 
+The the comments section consists of two main components:
+1. <Comments_List/> responsible for the comments list
+2. <Add_Comment/> which allows the user to write and upload the comment
+*/
+
 class comments extends React.Component{
     constructor(props){
         super(props);
