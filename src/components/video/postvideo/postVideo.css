@@ -1,0 +1,84 @@
+.post{
+    width:700px;
+    height: 500px;
+    margin:auto;
+    background-color: white;
+    border: 0.25px solid rgb(199, 199, 199);
+    margin-top: 150px;
+    align-items: center;
+    display:flex;
+    flex-direction: column;
+    border-radius: 30px;
+    padding-bottom: 30px;
+}
+
+.post-input{
+    padding:10px;
+    margin-top: 20px;
+    border:none;
+    border-bottom:1px solid rgb(131, 140, 146);
+    width:60%;
+}
+#video-input{
+    padding:20px;
+    border:none;
+    width:60%;
+}
+
+.preview{
+    height:100%;
+}
+
+.preview-content{
+    height:300px;
+    width:400px;
+    background-color: rgb(202, 202, 202);
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    border-radius: 30px;
+    overflow: hidden;
+}
+/* .image-content > img{
+    height:300px;
+    margin:auto;
+} */
+
+.file-select{
+    background: none;
+}
+
+form{
+    text-align: center;
+}
+
+.form-button{
+    background-color: rgb(90, 103, 110);
+    width:fit-content;
+    padding:50px;
+    padding-top:10px;
+    padding-bottom:10px;
+    margin: 10px;
+    margin-top: 20px;
+    border-radius: 10px;
+    font-size: 15px;
+    color:rgb(209, 213, 216);
+    border:none;
+    transition:all 0.25s;
+    font-weight: bold;
+}
+
+.form-button:hover{
+    background-color: rgb(209, 213, 216);
+    color:rgb(90, 103, 110);
+}
+
+.place-holder{
+    width:50%;
+    height: auto;
+    filter: invert(10%) sepia(20%) saturate(70%) hue-rotate(170deg) brightness(550%) contrast(119%);
+}
+
+input:focus{
+    outline-width: 0;
+}

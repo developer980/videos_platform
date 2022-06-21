@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import Home from "./pages/home";
+import Home from "./pages/home/home";
 import { Switch, Route } from "react-router-dom";
 import withFirebaseAuth from "react-with-firebase-auth";
 import * as firebase from "firebase/app";
@@ -10,9 +10,9 @@ import { database } from "firebase/database";
 import * as assets from "firebase/storage";
 import { firestore } from "firebase/firestore";
 import "firebase/auth";
-import Login from "./pages/login";
-import { VideoPage } from "./pages/videoPage";
-import { Profile } from "./pages/profile";
+import Login from "./pages/login/login";
+import VideoPage from "./pages/videoPage/videoPage";
+import { Profile } from "./pages/profile/profile";
 
 export const firebaseapp = firebase.initializeApp(firebaseConfig);
 const firebaseAppAuth = firebaseapp.auth();
@@ -109,30 +109,33 @@ class App extends React.Component {
     return (
       <div className = "app">
         <Switch>
-          <Route
-            exact
-            path="/"
-            render={(props) => (<Home 
-              {...props} 
-              user = {this.props.user}
-              videos={this.state.videos}
-              comments = {this.state.comments}
-              likes = {this.state.likes}
-              />)}
-          />
-
-          <Route path = "/login" render = {(props)=>(
+            <Route
+              exact
+              path="/"
+              render={(props) => (<Home 
+                {...props} 
+                user = {this.props.user}
+                videos={this.state.videos}
+                comments = {this.state.comments}
+                likes = {this.state.likes}
+                signOut = {this.props.signOut}
+                />)}
+            />
+            
+          <Route exact path = "/login" render = {(props)=>(
             <Login {...props} 
             user = {this.user}
             signInWithGoogle = {this.props.signInWithGoogle}
           />)}></Route>
+
 
           <Route path = "/:videoid=>:videoName" render = {(props) => (
             <VideoPage {...props} 
             user = {this.props.user}
             videos = {this.state.videos}
             comments = {this.state.comments}
-            likes = {this.state.likes}/>
+            likes = {this.state.likes}
+            signOut = {this.props.signOut}/>
           )}/>
 
           <Route path = "/profile->:username" render={(props) =>(
@@ -140,7 +143,8 @@ class App extends React.Component {
             user = {this.props.user}
             videos={this.state.videos}
             comments = {this.state.comments}
-            likes = {this.state.likes}/>
+            likes = {this.state.likes}
+            signOut = {this.props.signOut}/>
           )}/>
         </Switch>
       </div>
