@@ -53,3 +53,8 @@
 .comment-content{
     margin: 10px;
 }
+
+.comment-username{
+    display:flex;
+    align-items: center;
+}

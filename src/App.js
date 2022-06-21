@@ -177,10 +177,11 @@ export function add_like(path){
   })
 }
 
+
+
 /*
 This function is used to upload a video on the firebase storage
 */
-
 
 export function upload(file, name, description, user) {
   st.ref(`files/${file.name}`).put(file).on("state_changed", snapshot =>{},

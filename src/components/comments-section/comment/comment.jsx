@@ -28,7 +28,7 @@ class Comment extends React.Component{
         return(
             <div>
                 <div className = "comment">
-                    <div className = "comment-username" style = {{fontSize:"30px"}}>
+                    <div className = "comment-username" style = {{fontSize:"20px"}}>
                         <img className = "userIcon" src={User_icon} alt="" />
                         <b>
                             {username}

@@ -26,13 +26,9 @@ class Post extends React.Component{
     }
 
     componentDidMount(){
-        //this.props.user?
-            this.props.likes.filter(like => like.from == this.props.user.uid && like.path == this.props.path) != 0 ?
-            this.setState({like_filter:'invert(10%) sepia(20%) saturate(70%) hue-rotate(170deg) brightness(0%) contrast(119%)'}):
-            this.setState({like_filter:'invert(10%) sepia(20%) saturate(70%) hue-rotate(170deg) brightness(550%) contrast(119%)'})
-            // :
-            // this.setState({like_filter:'invert(10%) sepia(20%) saturate(70%) hue-rotate(170deg) brightness(770%) contrast(119%)',
-            //                comment_filter:'invert(10%) sepia(20%) saturate(70%) hue-rotate(170deg) brightness(770%) contrast(119%)'})
+        this.props.likes.filter(like => like.from == this.props.user.uid && like.path == this.props.path) != 0 ?
+        this.setState({like_filter:'invert(10%) sepia(20%) saturate(70%) hue-rotate(170deg) brightness(0%) contrast(119%)'}):
+        this.setState({like_filter:'invert(10%) sepia(20%) saturate(70%) hue-rotate(170deg) brightness(550%) contrast(119%)'})
     }
 
     render(){
@@ -78,7 +74,7 @@ class Post extends React.Component{
                                     comment_filter:'invert(10%) sepia(20%) saturate(70%) hue-rotate(170deg) brightness(0%) contrast(119%)'})
                             }
                             }}>
-                                
+
                             <img src={Comment} className= "btn"/>
                             <b>{comments.filter(comment => comment.path == `videos/${path}/comments`).length}</b>
                             </button>
