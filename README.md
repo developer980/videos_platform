@@ -6,7 +6,9 @@ A social platform where user can upload videos and see videos uploaded by other 
 
 ## You can
 1. post videos
-2. view videos posted by you and other people
+   ![2022-10-10 (5)](https://user-images.githubusercontent.com/91996303/194931760-73fd2b20-65e7-461f-b4ae-3888faf23161.png)
+
+3. view videos posted by you and other people
 ![2022-07-08 (4)](https://user-images.githubusercontent.com/91996303/194924360-0a7d9e64-a9e1-4cbe-b052-df23e5094760.png)
 
 3. view your personal profile with your uploaded videos
