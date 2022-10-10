@@ -14,7 +14,9 @@ A social platform where user can upload videos and see videos uploaded by other 
 
 5. search for specific videos
 6. send likes and add comments to the posts
-7. reply to people's comments and also reply to people's replies to other comments
+   ![2022-10-10 (4)](https://user-images.githubusercontent.com/91996303/194928683-677883e8-308c-4797-a2d7-b95970132e73.png)
+
+8. reply to people's comments and also reply to people's replies to other comments
 
 ## You can't (for the moment)
 1. view other people profiles
