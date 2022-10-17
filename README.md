@@ -9,7 +9,7 @@ Stack used:
    - Firebase
    - Heroku
 
-The app is live, go check it right here: https://videos-test-app.herokuapp.com/
+App's public link: https://videos-test-app.herokuapp.com/
 
 ## You can
 1. post videos
