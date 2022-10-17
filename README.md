@@ -4,6 +4,11 @@ The model of a social platform for videos
 ## About
 A social platform where user can upload videos and see videos uploaded by other users
 
+Stack used:
+   - React
+   - Firebase
+   - Heroku
+
 The app is live, go check it right here: https://videos-test-app.herokuapp.com/
 
 ## You can
