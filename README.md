@@ -9,7 +9,7 @@ Stack used:
    - Firebase
    - Heroku
 
-App's public link: https://videos-test-app.herokuapp.com/
+App's public link: https://videos-efd6c.web.app
 
 ## You can
 1. post videos
