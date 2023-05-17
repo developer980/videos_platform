@@ -2,7 +2,7 @@
 The model of a social platform for videos
 
 ## About
-A social platform where user can upload videos and see videos uploaded by other users
+A social platform where users can upload videos and see videos uploaded by other users
 
 Stack used:
    - React
